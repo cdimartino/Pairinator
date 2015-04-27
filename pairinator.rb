@@ -1,4 +1,15 @@
 require 'json'
+require 'slop'
+
+OPTS = Slop.parse do |o|
+  o.string '-p', '--pairfile', 'JSON file recording prior pairings'
+  o.string '-n', '--dontpairfile', 'JSON file recording pairings to avoid'
+  o.bool   '-c', '--stdin', 'Take initial pairfile from STDIN'
+  o.on '--help', '-h' do
+    puts o
+    exit
+  end
+end
 
 COHORT_FILE = ARGV[0]
 DONT_PAIR_FILE = ARGV[1]
